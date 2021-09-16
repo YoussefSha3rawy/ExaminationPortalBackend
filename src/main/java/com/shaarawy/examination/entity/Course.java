@@ -49,6 +49,16 @@ public class Course {
 	public void setStudents(Collection<Student> students) {
 		this.students = students;
 	}
+	
+	public Course() {
+		
+	}
+	
+	public Course(int courseID, String courseName, Collection<Student> students) {
+		this.courseID = courseID;
+		this.courseName = courseName;
+		this.students = students;
+	}
 	@Override
 	public String toString() {
 		return "Course [courseID=" + courseID + ", courseName=" + courseName

@@ -25,7 +25,17 @@ private StudentRepository studentRepository;
 	}
 	
 	public void addStudent(Student student) {
-		studentRepository.save(student);
+		Optional<Student> opt = studentRepository.findById(student.getUsername());
+		if (opt.isEmpty()) {
+			Student stud = studentRepository.findbyEmail(student.getEmail());
+			if(stud==null) {
+				studentRepository.save(student);
+			}
+			else
+				throw new Error("Email already taken");
+		}
+		else
+			throw new Error("Username already taken");
 	}
 	
 	public void updateStudent(Student stex) {

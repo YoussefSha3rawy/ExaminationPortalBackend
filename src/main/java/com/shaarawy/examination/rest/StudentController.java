@@ -60,8 +60,14 @@ private StudentService studentService;
 	}
 	
 	@PostMapping()
-	public void addStudent(@RequestBody Student stex) {
-		studentService.addStudent(stex);
+	public ResponseEntity<Object> addStudent(@RequestBody Student student) {
+		try{
+			studentService.addStudent(student);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		}
+		catch(Error e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.CONFLICT);
+		}
 	}
 	
 	@PutMapping()
